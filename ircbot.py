@@ -27,6 +27,38 @@ irc.send('NICK ' + nick + '\r\n') #send nickname
 irc.send('USER everyb0t everyb0t everyb0t :everystone_bot\r\n') #send user info
 print "********* Bot online *********"
 
+#try parse integer from string
+def try_parse_int(s, base=10):
+	try:
+    		int(s, base)
+		return True
+  	except ValueError:
+    		return False
+
+#Check if operator is valid
+def valid_operator(op):
+	if op in ('+', '-', '*', '/'):
+		return True
+	else:
+		return False
+
+
+# hente username of user sending PRIVMSG to channel
+#:everystone!~everyston@146.185.141.215 PRIVMSG #uia.cs :hei
+def getUserNick(data):
+	nick = data.split('!');
+	return nick[0].lstrip('#:');
+
+
+def math(user, n1, op, n2):
+	if( try_parse_int(n1) and try_parse_int(n2) and valid_operator(op) ): #evaluate that n1 and n2 can be converted to integer
+		operand = ops[op];
+		result = operand(int(n1), int(n2));
+		return " :%s: %s %s %s = %d" % (user, n1, op, n2, result)
+	else:
+		return " :%s: (!) Syntax: >hva er x [+,-,*,/] y" % (user)	
+		
+		
 
 while True: #loop
     data=irc.recv(4096) #receive data from socket
@@ -36,20 +68,21 @@ while True: #loop
         irc.send('PONG ' + data.split()[1] + '\r\n') #Send back a PONG
         print "PONG ",data.split()[1]
 
+	################	JOIN CHANNEL		###############
     if data.find(':everyb0t!~everyb0t@146.185.141.215 MODE everyb0t +i') != -1: #we are connected
         irc.send('JOIN ' + chan + '\r\n') #join channel
 	print "** Joining channel ", chan
         irc.send('PRIVMSG ' + chan + ' hello\r\n') #say hello to chan
 
+	################# 	CS SERVER STATUS	 ######################
     if data.find('!status') != -1: #CS SERVER STATUS ( TODO: query port 27015 with status query )
         irc.send('PRIVMSG ' + chan + ' :server status: 0\r\n')
 
+	################## 	Matte operasjoner	 #####################
     if data.find('>hva er') != -1: #hva er x (op) y
         raw=data.split(' ');
-	number1 = int(raw[5]);
-	operand = ops[raw[6]];
-	number2 = int(raw[7].rstrip('\n\r'));
-	result = operand(number1, number2)
-	svar =  " :%r %r %r = %r" % (number1, raw[6], number2, result)
+	user = getUserNick(data)
+	svar = math(user, raw[5], raw[6], raw[7].rstrip('\n\r'))	
+
 	irc.send('PRIVMSG ' + chan + svar + '\r\n')
 	#print raw
