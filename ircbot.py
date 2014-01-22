@@ -3,11 +3,18 @@
 # Eirik Kvarstein
 
 import socket;
+import operator;
 
 nick = 'everyb0t'
 network = 'irc.quakenet.org'
 port = 6667;
 chan = "#uia.cs"
+
+#operators
+ops = {"+": operator.add,
+	"-": operator.sub,
+	"*": operator.mul,
+	"/": operator.div}
 
 #define socket
 irc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -35,4 +42,14 @@ while True: #loop
         irc.send('PRIVMSG ' + chan + ' hello\r\n') #say hello to chan
 
     if data.find('!status') != -1: #CS SERVER STATUS ( TODO: query port 27015 with status query )
-        irc.send('PRIVMSG ' + chan + ' CS\ server\ status:\ \r\n')
+        irc.send('PRIVMSG ' + chan + ' :server status: 0\r\n')
+
+    if data.find('>hva er') != -1: #hva er x (op) y
+        raw=data.split(' ');
+	number1 = int(raw[5]);
+	operand = ops[raw[6]];
+	number2 = int(raw[7].rstrip('\n\r'));
+	result = operand(number1, number2)
+	svar =  " :%r %r %r = %r" % (number1, raw[6], number2, result)
+	irc.send('PRIVMSG ' + chan + svar + '\r\n')
+	#print raw
