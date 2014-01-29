@@ -1,0 +1,35 @@
+lambda		Lambda expression -
+if – else	Conditional expression
+
+if ( True_statement):
+	do something
+else:
+	do something else
+
+ 
+or		Boolean OR
+if ( 1==2 OR 5==2):
+	#do something
+
+and		Boolean AND
+if ( Var1 == 10 AND run == True):
+
+	#do something
+not x		Boolean NOT
+if ( not Var2 ):
+	# do something
+
+in, not in, is, is not, <, <=, >, >=, <>, !=, ==	Comparisons, including membership tests and identity tests
+if ( "exit" in cmd_list):
+	# do something
+
+|		Bitwise OR
+^		Bitwise XOR
+&		Bitwise AND
+<<, >>		Shifts
++, -		Addition and subtraction
+*, /, //, %	Multiplication, division, remainder [8]
++x, -x, ~x	Positive, negative, bitwise NOT
+**		Exponentiation [9]
+x[index], x[index:index], x(arguments...), x.attribute	Subscription, slicing, call, attribute reference
+(expressions...), [expressions...], {key: value...}, `expressions...`	Binding or tuple display, list display, dictionary display, string conversion
