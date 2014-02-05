@@ -1,6 +1,4 @@
-# -*- coding: latin-1 -*-
-
-#
+# -*- coding: latin-1 -*-#
 #  IS-105 LAB2
 #
 #  lab2.py - kildekode som inneholder studentenes lQsning.

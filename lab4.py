@@ -1,5 +1,4 @@
 # -*- coding: latin-1 -*-
-
 #
 #  IS-105 LAB4
 #
@@ -66,7 +65,8 @@ psutils_use()
 #			
 def print_history(proglangs):
 	# Implementer funksjonen her
-	for line in proglangs:
+	sortert = sorted(proglangs, key=lambda year: year[1]) # sorter
+	for line in sortert:
 		print "\t%s ble startet i %s av %s" %(line[0], line[1], line[2])
 
 

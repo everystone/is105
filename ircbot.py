@@ -50,8 +50,9 @@ def getUserNick(data):
 	return nick[0].lstrip('#:');
 
 
+#respond to ">hva er x + y math request
 def math(user, n1, op, n2):
-	if( try_parse_int(n1) and try_parse_int(n2) and valid_operator(op) ): #evaluate that n1 and n2 can be converted to integer
+	if( try_parse_int(n1) and try_parse_int(n2) and valid_operator(op) ): #evaluate user input
 		operand = ops[op];
 		result = operand(int(n1), int(n2));
 		return " :%s: %s %s %s = %d" % (user, n1, op, n2, result)
@@ -60,9 +61,9 @@ def math(user, n1, op, n2):
 		
 		
 
-while True: #loop
+while True: # Main loop
     data=irc.recv(4096) #receive data from socket
-    print data #Print data to console
+    print data # ( debug - print all socket data )
 
     if data.find('PING') != -1: #If PING is Found in the Data
         irc.send('PONG ' + data.split()[1] + '\r\n') #Send back a PONG
