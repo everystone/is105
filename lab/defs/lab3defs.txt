@@ -1,0 +1,11 @@
+● et regulært uttrykk (regular expression)
+brukes innen programmering og er en streng som beskriver et sett av strenger - et mønster - som følger gitte syntaksregler. brukes for å søke etter og manipulere tekst basert på gite mønstre.
+● import  ­ hva betyr dette i et Python program?
+importerer moduler/biblioteker i python
+● “skript”­språk
+et kodespråk som er "høyere level" enn programmeringspråk. trenger en "motor" som kompilerer og kjører koden.
+● Perl
+"Practical Extraction and Report Language", script språk, basert på C 
+● Bash
+Unix shell, standard på Linux og Mac OSX. står for "Bourne-again shell". kan også kjøre kommandoer fra fil, så kan brukes som script språk.
+
