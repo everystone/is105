@@ -1,0 +1,19 @@
+● API
+Application Programming Interface - et public sett med kommandoer som andre kan bruke
+● IDE
+Integrated Development Environment - Et program for å skrive og kompilere kode
+● ps
+lister kjørende processer i unix.
+● top
+viser kjørende programmer sortert på ressursbruk
+● df
+lister opp filsystem og harddisk plass bruk
+● kill
+dreper et kjørende program
+● netstat
+Viser TCP/IP koblinger, feks netstat -aolnp | grep tcp lister lyttende porter på TCP.
+● ifconfig
+lister / konfigurerer nettverksadapter i linux
+● who
+Viser hvem som er logget inn og hva de kjører.
+
